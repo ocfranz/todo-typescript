@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { media } from "../../styles/Breakpoints";
 
 import Header from "../../modules/Header/Header";
-import Input from "../../components/Input/Input";
+import Heading from "../../components/Heading/Heading";
 import TodoListItem from "../../components/TodoListItem/TodoListItem";
 import ModalAdd from "../../modules/ModalAdd/ModalAdd";
 const AppWrapper = styled.div`
@@ -34,11 +34,8 @@ function App() {
         <div className="App">
             <AppWrapper>
                 <Header />
-                <Input
-                    onChange={(event) => handleTodoAddInput(event)}
-                    value={todoText}
-                    placeholder="New Todo"
-                />
+                <Heading type="h2" children="Today"></Heading>
+
                 <TodoListItem
                     text="Make coffe"
                     estimated={30}
@@ -63,9 +60,9 @@ function App() {
                     }/${date.getFullYear()}`}
                     completed={true}
                 />
-                <ModalAdd visible={true}/>
+                <Heading type="h2" children="Tomorrow"></Heading>
+                <ModalAdd visible={true} />
             </AppWrapper>
-            
         </div>
     );
 }

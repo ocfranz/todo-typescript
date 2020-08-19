@@ -9,6 +9,10 @@ const HeaderWrapper = styled.div`
     font-weight: 700;
     font-size: 30px;
     padding-top: 30px;
+    justify-content: space-between;
 `;
 
-export default HeaderWrapper;
+const IconWrapper = styled.div`
+    padding-top: 2px;
+`;
+export { HeaderWrapper, IconWrapper };

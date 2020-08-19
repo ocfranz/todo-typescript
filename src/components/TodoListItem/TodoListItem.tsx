@@ -67,13 +67,18 @@ const TodoListItem: FC<TodoListItemProps> = ({
         setCompleteTask(!completeTask);
     };
     const handleOnHover = (event: any) => {
-        console.log(event);
+      
         setExposeControls(!exposeControls);
     };
+    const handleOnDoubleClick = (event : any) =>{
+        console.log('ss');
+    }
     return (
         <TodoListItemWrapper
             onMouseEnter={(event) => handleOnHover(event)}
             onMouseLeave={(event) => handleOnHover(event)}
+            onDoubleClick={(event) => handleOnDoubleClick(event)}
+           
         >
             <TodoTitleStyled>
                 <CheckBox onClick={handleOnClickCheck}>
