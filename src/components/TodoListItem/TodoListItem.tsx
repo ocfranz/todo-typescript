@@ -1,5 +1,5 @@
-import React, { FC, MouseEvent, useState } from "react";
-import styled, { css } from "styled-components";
+import React, { FC, useState } from "react";
+import styled from "styled-components";
 import CircleIcon from "./CircleIcon";
 import CompletedIcon from "./CompletedIcon";
 
@@ -83,7 +83,7 @@ const TodoListItem: FC<TodoListItemProps> = ({
             </TodoTitleStyled>
             <TodoDateStyled>{date}</TodoDateStyled>
             <TodoEstimatedStyled>{`${estimated} min`}</TodoEstimatedStyled>
-            <ButtonControls visible={exposeControls}>Controls</ButtonControls>
+            <ButtonControls visible={exposeControls}>...</ButtonControls>
         </TodoListItemWrapper>
     );
 };

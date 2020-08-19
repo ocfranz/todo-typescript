@@ -1,6 +1,6 @@
 import React from "react";
 
-const CompletedIcon = ({size= 35, color = "#48D7A9"}) => {
+const CompletedIcon = ({ size = 35, color = "#48D7A9" }) => {
     return (
         <svg
             width={size}

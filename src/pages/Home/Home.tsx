@@ -1,12 +1,12 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import moment from "moment";
 import styled from "styled-components";
-import {media } from "../../styles/Breakpoints";
+import { media } from "../../styles/Breakpoints";
 
 import Header from "../../modules/Header/Header";
 import Input from "../../components/Input/Input";
 import TodoListItem from "../../components/TodoListItem/TodoListItem";
-
+import ModalAdd from "../../modules/ModalAdd/ModalAdd";
 const AppWrapper = styled.div`
     padding: 0px 20px;
     @media ${media.md} {
@@ -63,7 +63,9 @@ function App() {
                     }/${date.getFullYear()}`}
                     completed={true}
                 />
+                <ModalAdd visible={true}/>
             </AppWrapper>
+            
         </div>
     );
 }
