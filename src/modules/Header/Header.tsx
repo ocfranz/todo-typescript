@@ -1,9 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 import { HeaderWrapper, IconWrapper } from "./styles";
 import PlusIcon from "./PlusIcon.js";
-const Header = () => {
+interface HeaderProps {
+    addTask(task: string): void;
+}
+const Header: FC<HeaderProps> = ({addTask}) => {
     const handleOnClick = () => {
-        console.log("ss");
+        addTask('Hello')
     };
     return (
         <HeaderWrapper>

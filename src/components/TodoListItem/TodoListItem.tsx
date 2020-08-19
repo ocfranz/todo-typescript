@@ -5,6 +5,7 @@ import CompletedIcon from "./CompletedIcon";
 
 interface TodoListItemProps {
     completed?: boolean;
+    key?: any;
     text: string;
     date: string;
     estimated: number;
@@ -56,6 +57,7 @@ const ButtonControls = styled.div<{ visible: boolean }>`
 `;
 
 const TodoListItem: FC<TodoListItemProps> = ({
+    key,
     text,
     completed,
     date,
@@ -67,18 +69,17 @@ const TodoListItem: FC<TodoListItemProps> = ({
         setCompleteTask(!completeTask);
     };
     const handleOnHover = (event: any) => {
-      
         setExposeControls(!exposeControls);
     };
-    const handleOnDoubleClick = (event : any) =>{
-        console.log('ss');
-    }
+    const handleOnDoubleClick = (event: any) => {
+        console.log("ss");
+    };
     return (
         <TodoListItemWrapper
+            key={key}
             onMouseEnter={(event) => handleOnHover(event)}
             onMouseLeave={(event) => handleOnHover(event)}
             onDoubleClick={(event) => handleOnDoubleClick(event)}
-           
         >
             <TodoTitleStyled>
                 <CheckBox onClick={handleOnClickCheck}>
