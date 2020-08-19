@@ -48,10 +48,6 @@ const TodoEstimatedStyled = styled.div`
     font-size: 16px;
 `;
 
-interface ButtonControlSProps {
-    visible?: boolean;
-}
-
 const ButtonControls = styled.div<{ visible: boolean }>`
     margin-left: 10px;
     width: 35px;
