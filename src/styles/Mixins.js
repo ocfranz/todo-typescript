@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { Breakpoints } from './Breakpoints';
+import { Breakpoints } from './Breakpoints.ts';
 
 export const media = Object.keys(Breakpoints).reduce((accumulator, label) => {
 	accumulator[label] = (...args) => css`
