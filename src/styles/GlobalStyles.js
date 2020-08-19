@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
     }
     body{
         height: 100%;
-        background: #FFFFFF;
+        background: #FAF9FA;
         color: #000000;
         -webkit-transition: background-color 0.5s linear;
         -moz-transition:  background-color 0.5s linear;
