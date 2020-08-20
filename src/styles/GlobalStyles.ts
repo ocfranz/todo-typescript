@@ -19,5 +19,11 @@ const GlobalStyles = createGlobalStyle`
     *{
         font-family: 'Poppins', sans-serif;
     }
+    [contenteditable][placeholder]:empty:before {
+        content: attr(placeholder);
+        position: absolute;
+        color: rgba(55,53,47,0.4);
+        background-color: transparent;
+    }
 `;
 export default GlobalStyles;
