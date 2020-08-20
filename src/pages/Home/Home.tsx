@@ -2,13 +2,13 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import moment from "moment";
 import styled from "styled-components";
 import { media } from "../../styles/Breakpoints";
-
+import { RootState } from "../../reducers";
 import Header from "../../modules/Header/Header";
 import Heading from "../../components/Heading/Heading";
 import TodoListItem from "../../components/TodoListItem/TodoListItem";
 import ModalAdd from "../../modules/ModalAdd/ModalAdd";
 import { useSelector, useDispatch } from "react-redux";
-import { TasksState } from "../../reducers/tasksReducer";
+
 const AppWrapper = styled.div`
     padding: 0px 20px;
     @media ${media.md} {
@@ -18,12 +18,11 @@ const AppWrapper = styled.div`
 
 function App() {
     const date = new Date();
-
-    const tasks = useSelector<TasksState, TasksState["tasks"]>(
-        (state) => state.tasks
-    );
     const dispatch = useDispatch();
-
+    const tasks = useSelector((state: RootState) => state.tasksReducer.tasks);
+    const visibleModal = useSelector(
+        (state: RootState) => state.uiReducer.showModalAdd
+    );
     const addTask = (task: string) => {
         dispatch({ type: "ADD_TASK", payload: task });
     };
@@ -48,7 +47,7 @@ function App() {
                 })}
 
                 <Heading type="h2" children="Tomorrow"></Heading>
-                <ModalAdd visible={true} />
+                <ModalAdd visible={visibleModal} />
             </AppWrapper>
         </div>
     );
