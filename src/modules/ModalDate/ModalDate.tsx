@@ -1,8 +1,13 @@
 import React, { FC, useEffect, useRef } from "react";
-
-import { ModalDateStyled, ModalDateWrapper } from "./styles";
 import Calendar from "../../components/Calendar/Calendar";
 import { preventClickOutside } from "../../helpers/preventClickOutside";
+import {
+    ModalDateStyled,
+    ModalDateWrapper,
+    DateInputWrapper,
+    DateInput,
+} from "./styles";
+
 interface ModalDate {
     visible: boolean;
     onClickOutside: () => void;
@@ -27,9 +32,9 @@ const ModalDate: FC<ModalDate> = ({ visible, onClickOutside }) => {
     return (
         <ModalDateStyled visible={visible} ref={modalDate}>
             <ModalDateWrapper>
-                <div>
-                    <input readOnly={true}></input>
-                </div>
+                <DateInputWrapper>
+                    <DateInput readOnly={true} />
+                </DateInputWrapper>
                 <div>
                     <Calendar />
                 </div>
