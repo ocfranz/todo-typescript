@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
+import './CustomeCalendar.css';
 import CalendarLibrary from "react-calendar";
 import { CalendarWrapper } from "./styles";
 
@@ -14,6 +15,7 @@ const Calendar = ({}) => {
             <CalendarLibrary
                 value={selectedDate}
                 onChange={handleCalendarChange}
+                className="calendar"
             />
         </CalendarWrapper>
     );

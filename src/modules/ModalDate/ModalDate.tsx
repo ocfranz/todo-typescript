@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useRef } from "react";
+
 import { ModalDateStyled, ModalDateWrapper } from "./styles";
 import Calendar from "../../components/Calendar/Calendar";
 import { preventClickOutside } from "../../helpers/preventClickOutside";
