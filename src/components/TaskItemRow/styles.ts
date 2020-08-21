@@ -16,15 +16,18 @@ const TaskItemName = styled.span`
     opacity: 0.8;
     margin-left: 10px;
 `;
-const TaskItemButton = styled.div`
+const TaskItemAction = styled.div`
     width: 80%;
-    text-align: left;
+    
+`;
+
+const TaskItemButton = styled.div`
+text-align: left;
     padding : 10px 0px;
     cursor : pointer;
     &:hover {
         background-color: rgba(0, 0, 0, 0.3);
         
-    }
-`;
+    }`
 
-export { TaskItem, TaskItemTag, TaskItemButton, TaskItemName };
+export { TaskItem, TaskItemTag,TaskItemAction,  TaskItemButton, TaskItemName };

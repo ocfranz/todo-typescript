@@ -13,7 +13,7 @@ const Header: FC<HeaderProps> = ({ addTask }) => {
         (state: RootState) => state.uiReducer.showModalAdd
     );
     const handleOnClick = () => {
-        dispatch({ type: "SHOW_MODAL", payload: !visibleModal });
+        dispatch({ type: "SHOW_MODAL_ADD", payload: !visibleModal });
     };
     return (
         <HeaderWrapper>

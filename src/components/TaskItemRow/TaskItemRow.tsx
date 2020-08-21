@@ -1,6 +1,12 @@
 import React, { FC } from "react";
 
-import { TaskItem, TaskItemTag, TaskItemButton, TaskItemName } from "./styles";
+import {
+    TaskItem,
+    TaskItemTag,
+    TaskItemButton,
+    TaskItemName,
+    TaskItemAction,
+} from "./styles";
 
 interface TaskItemRowProps {
     icon: any;
@@ -21,10 +27,12 @@ const TaskItemRow: FC<TaskItemRowProps> = ({
                 {icon}
                 <TaskItemName>{children}</TaskItemName>
             </TaskItemTag>
-            <TaskItemButton onClick={handleOnButtonClick}>
-                <span style={{ opacity: "0.5" }}>Empty</span>
+            <TaskItemAction>
+                <TaskItemButton onClick={handleOnButtonClick}>
+                    <span style={{ opacity: "0.5" }}>Empty</span>
+                </TaskItemButton>
                 {childrenModal}
-            </TaskItemButton>
+            </TaskItemAction>
         </TaskItem>
     );
 };

@@ -21,6 +21,7 @@ import {
     ModalContainer,
 } from "./styles";
 import ModalDate from "../ModalDate/ModalDate";
+import { preventClickOutside } from "../../helpers/preventClickOutside";
 
 interface ModalAddProps {
     visible: boolean;
@@ -36,33 +37,40 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     const visibleModal = useSelector(
         (state: RootState) => state.uiReducer.showModalAdd
     );
+
     useEffect(() => {
         if (visibleModal) {
             document.addEventListener("click", handleClickOutside, true);
+            console.log("click outise");
         }
     });
     const handleClickOutside = (event: any) => {
-        if (!modalDialog.current.contains(event.target)) {
+        if (preventClickOutside(modalDialog, event)) {
             handleOnClose();
         }
     };
     const handleOnClose = () => {
         document.removeEventListener("click", handleClickOutside, true);
-        dispatch({ type: "SHOW_MODAL", payload: !visibleModal });
+        dispatch({ type: "SHOW_MODAL_ADD", payload: !visibleModal });
     };
     const handleOnAdd = () => {
         setNewTask("");
         titleRef.current.innerHTML = "";
         handleOnClose();
+        setVisibleModalDate(false);
         dispatch({ type: "ADD_TASK", payload: newTask });
     };
 
     const handleOnInput = (event: any) => {
-        console.log(event.target.innerHTML);
         setNewTask(event.target.innerHTML);
     };
 
     const handleOnDateClick = () => {
+        setVisibleModalDate(!visibleModalDate);
+    };
+    const handleOnEstimatedClick = () => {};
+
+    const handleOnClickOutsideDate = () => {
         setVisibleModalDate(!visibleModalDate);
     };
     return (
@@ -110,14 +118,19 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
                                 children="Date"
                                 handleOnButtonClick={handleOnDateClick}
                                 childrenModal={
-                                    <ModalDate visible={visibleModalDate} />
+                                    <ModalDate
+                                        visible={visibleModalDate}
+                                        onClickOutside={
+                                            handleOnClickOutsideDate
+                                        }
+                                    />
                                 }
                             />
 
                             <TaskItemRow
                                 icon={<ClockIcon size={25} />}
                                 children="Estimated"
-                                handleOnButtonClick={handleOnDateClick}
+                                handleOnButtonClick={handleOnEstimatedClick}
                             />
                             <hr></hr>
                             <div
