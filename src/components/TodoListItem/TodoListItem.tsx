@@ -10,7 +10,7 @@ interface TodoListItemProps {
     date: string;
     estimated: number;
 }
-const TodoListItemWrapper = styled.div`
+const TodoListItemWrapper = styled.div<{key : any}>`
     width: 100%;
     display: flex;
     flex-direction: row;

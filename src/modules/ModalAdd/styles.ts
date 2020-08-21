@@ -49,7 +49,7 @@ const ModalBody = styled.div`
     text-align: center;
 `;
 
-const TaskDetails = styled.div`
+const TaskHeading = styled.div`
     display: flex;
     text-align: left;
     flex-wrap: nowrap;
@@ -64,5 +64,5 @@ export {
     ModalBody,
     ModalFooter,
     ModalContainer,
-    TaskDetails,
+    TaskHeading,
 };

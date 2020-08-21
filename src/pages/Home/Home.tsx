@@ -32,11 +32,11 @@ function App() {
             <AppWrapper>
                 <Header addTask={addTask} />
                 <Heading type="h2" children="Today"></Heading>
-                {tasks.map((task) => {
+                {tasks.map((task, index) => {
                     return (
                         <TodoListItem
-                            key={task}
-                            text="Make coffe"
+                            key={index}
+                            text={task}
                             estimated={30}
                             date={`${date.getDate()}/${
                                 date.getMonth() + 1
