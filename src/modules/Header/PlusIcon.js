@@ -1,7 +1,6 @@
 import React from "react";
-const PlusCircle = ({ size = 37, color = "#3720C0", handleOnClick }) => (
+const PlusCircle = ({ size = 37, color = "#3720C0" }) => (
     <svg
-        onClick={handleOnClick} 
         style={{cursor :" pointer"}}
         xmlns="http://www.w3.org/2000/svg"
         width={size}

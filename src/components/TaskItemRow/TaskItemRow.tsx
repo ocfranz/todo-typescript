@@ -20,7 +20,7 @@ const TaskItemRow: FC<TaskItemRowProps> = ({
                 <TaskItemName>{children}</TaskItemName>
             </TaskItemTag>
             <TaskItemButton onClick={handleOnButtonClick}>
-                <span></span>
+                <span style={{opacity :"0.5"}}>Empty</span>
             </TaskItemButton>
         </TaskItem>
     );

@@ -29,24 +29,24 @@ const ModalContent = styled.div`
     width: 100%;
 `;
 
-const ModalContainer = styled.div`
-    padding: 20px 20px;
-    @media ${media.md} {
-        padding: 20px 100px;
-    }
-`;
+const ModalContainer = styled.div``;
 
 const ModalHeader = styled.div`
-    padding: 10px 10px;
-    font-size: 20px;
-    opacity: 0.7;
-    text-align: center;
+    padding: 10px 20px;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `;
 const ModalFooter = styled.div`
     text-align: center;
 `;
 const ModalBody = styled.div`
     text-align: center;
+    padding: 20px 20px;
+    @media ${media.md} {
+        padding: 20px 100px;
+    }
 `;
 
 const TaskHeading = styled.div`

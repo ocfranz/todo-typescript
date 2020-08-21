@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { HeaderWrapper, IconWrapper } from "./styles";
 import { RootState } from "../../reducers";
 import { useSelector, useDispatch } from "react-redux";
-
+import IconButton from '../../components/IconButton/IconButton';
 import PlusIcon from "./PlusIcon.js";
 interface HeaderProps {
     addTask(task: string): void;
@@ -18,7 +18,8 @@ const Header: FC<HeaderProps> = ({ addTask }) => {
     return (
         <HeaderWrapper>
             <span>Simple Todo</span>
-            <PlusIcon handleOnClick={handleOnClick} />
+            <IconButton children={<PlusIcon />} handleOnClick={handleOnClick} />
+            
         </HeaderWrapper>
     );
 };

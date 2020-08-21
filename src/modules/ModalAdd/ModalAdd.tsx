@@ -2,12 +2,14 @@ import React, { FC, useState, useEffect, useRef } from "react";
 
 import CircleIcon from "../../components/TodoListItem/CircleIcon";
 import Editable from "../../components/Editable/Editable";
-import CloseIcon from "./CloseIcon";
 import { RootState } from "../../reducers";
 import { useSelector, useDispatch } from "react-redux";
 import CalendarIcon from "./CalendarIcon";
 import ClockIcon from "./ClockIcon";
+import CloseIcon from "./CloseIcon";
+import SaveIcon from "./SaveIcon";
 import TaskItemRow from "../../components/TaskItemRow/TaskItemRow";
+import IconButton from "../../components/IconButton/IconButton";
 import {
     ModalWrapper,
     ModalDialog,
@@ -26,28 +28,29 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     const [newTask, setNewTask] = useState("");
     const titleRef: any = useRef(null);
     const modalDialog: any = useRef(null);
-  
+
     const dispatch = useDispatch();
     const visibleModal = useSelector(
         (state: RootState) => state.uiReducer.showModalAdd
     );
     useEffect(() => {
-        if(visibleModal){
-            document.addEventListener("click",handleClickOutside, true)
+        if (visibleModal) {
+            document.addEventListener("click", handleClickOutside, true);
         }
     });
-    const handleClickOutside = (event : any) =>{
-        if(!modalDialog.current.contains(event.target)){
+    const handleClickOutside = (event: any) => {
+        if (!modalDialog.current.contains(event.target)) {
             handleOnClose();
         }
-    }
+    };
     const handleOnClose = () => {
-        document.removeEventListener("click",handleClickOutside, true)
+        document.removeEventListener("click", handleClickOutside, true);
         dispatch({ type: "SHOW_MODAL", payload: !visibleModal });
     };
     const handleOnAdd = () => {
         setNewTask("");
         titleRef.current.innerHTML = "";
+        handleOnClose();
         dispatch({ type: "ADD_TASK", payload: newTask });
     };
 
@@ -58,11 +61,23 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
 
     const handleOnDateClick = () => {};
     return (
-        <ModalWrapper visible={visible} > 
+        <ModalWrapper visible={visible}>
             <ModalDialog ref={modalDialog}>
                 <ModalContent>
                     <ModalContainer>
-                        <ModalHeader>Add new task</ModalHeader>
+                        <ModalHeader>
+                            <span style={{ opacity: "0.5" }}>Add new task</span>
+                            <div>
+                                <IconButton
+                                    children={<SaveIcon size={25} />}
+                                    handleOnClick={handleOnAdd}
+                                />
+                                <IconButton
+                                    children={<CloseIcon size={25} />}
+                                    handleOnClick={handleOnClose}
+                                />
+                            </div>
+                        </ModalHeader>
                         <ModalBody>
                             <TaskHeading>
                                 <div style={{ width: "40px" }}>
@@ -71,7 +86,8 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
                                 <div
                                     style={{
                                         width: "calc(100% - 40px )",
-                                        fontSize: "18px",
+                                        fontSize: "25px",
+                                        fontWeight: "bold",
                                         position: "relative",
                                     }}
                                 >
@@ -104,11 +120,7 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
                                 <Editable placeholder="Add description" />
                             </div>
                         </ModalBody>
-                        <ModalFooter>
-                            <button onClick={handleOnClose}>close</button>
-                            <button onClick={handleOnAdd}>Add</button>
-                            <CloseIcon />
-                        </ModalFooter>
+                        <ModalFooter></ModalFooter>
                     </ModalContainer>
                 </ModalContent>
             </ModalDialog>
