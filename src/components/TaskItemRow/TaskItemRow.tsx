@@ -6,12 +6,14 @@ interface TaskItemRowProps {
     icon: any;
     children: string;
     handleOnButtonClick: () => void;
+    childrenModal?: React.Component | any;
 }
 
 const TaskItemRow: FC<TaskItemRowProps> = ({
     icon,
     children,
     handleOnButtonClick,
+    childrenModal,
 }) => {
     return (
         <TaskItem>
@@ -20,7 +22,8 @@ const TaskItemRow: FC<TaskItemRowProps> = ({
                 <TaskItemName>{children}</TaskItemName>
             </TaskItemTag>
             <TaskItemButton onClick={handleOnButtonClick}>
-                <span style={{opacity :"0.5"}}>Empty</span>
+                <span style={{ opacity: "0.5" }}>Empty</span>
+                {childrenModal}
             </TaskItemButton>
         </TaskItem>
     );

@@ -20,11 +20,14 @@ import {
     TaskHeading,
     ModalContainer,
 } from "./styles";
+import ModalDate from "../ModalDate/ModalDate";
+
 interface ModalAddProps {
     visible: boolean;
 }
 
 const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
+    const [visibleModalDate, setVisibleModalDate] = useState(false);
     const [newTask, setNewTask] = useState("");
     const titleRef: any = useRef(null);
     const modalDialog: any = useRef(null);
@@ -59,7 +62,9 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
         setNewTask(event.target.innerHTML);
     };
 
-    const handleOnDateClick = () => {};
+    const handleOnDateClick = () => {
+        setVisibleModalDate(!visibleModalDate);
+    };
     return (
         <ModalWrapper visible={visible}>
             <ModalDialog ref={modalDialog}>
@@ -104,7 +109,11 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
                                 icon={<CalendarIcon size={25} />}
                                 children="Date"
                                 handleOnButtonClick={handleOnDateClick}
+                                childrenModal={
+                                    <ModalDate visible={visibleModalDate} />
+                                }
                             />
+
                             <TaskItemRow
                                 icon={<ClockIcon size={25} />}
                                 children="Estimated"

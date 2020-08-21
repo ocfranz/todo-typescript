@@ -10,6 +10,7 @@ const ModalWrapper = styled.div<{ visible: boolean }>`
     background: rgba(0, 0, 0, 0.3);
     height: 100%;
     align-items: center;
+    z-index: 99;
 `;
 const ModalDialog = styled.div`
     width: 100%;
