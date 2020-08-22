@@ -22,7 +22,7 @@ import {
 } from "./styles";
 import ModalDate from "../ModalDate/ModalDate";
 import { preventClickOutside } from "../../helpers/preventClickOutside";
-
+import { Task } from "../../reducers/tasksReducer";
 interface ModalAddProps {
     visible: boolean;
 }
@@ -37,6 +37,7 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     const visibleModal = useSelector(
         (state: RootState) => state.uiReducer.showModalAdd
     );
+    const tasks = useSelector((state: RootState) => state.tasksReducer.tasks);
 
     useEffect(() => {
         if (visibleModal) {
@@ -54,11 +55,17 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
         dispatch({ type: "SHOW_MODAL_ADD", payload: !visibleModal });
     };
     const handleOnAdd = () => {
+        let payload: Task = {
+            id: tasks.length + 1,
+            text: newTask,
+            isCompleted: false,
+            date: new Date().toDateString().toString(),
+        };
         setNewTask("");
         titleRef.current.innerHTML = "";
         handleOnClose();
         setVisibleModalDate(false);
-        dispatch({ type: "ADD_TASK", payload: newTask });
+        dispatch({ type: "ADD_TASK", payload });
     };
 
     const handleOnInput = (event: any) => {

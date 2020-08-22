@@ -1,5 +1,12 @@
+export interface Task {
+    id: number;
+    text: string;
+    isCompleted: boolean;
+    date: string;
+}
+
 export interface TasksState {
-    tasks: string[];
+    tasks: Array<Task>;
 }
 const initialState = {
     tasks: [],
@@ -7,7 +14,7 @@ const initialState = {
 
 type Action = {
     type: "ADD_TASK";
-    payload: string;
+    payload: Task;
 };
 export const tasksReducer = (
     state: TasksState = initialState,

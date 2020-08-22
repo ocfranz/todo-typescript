@@ -69,7 +69,7 @@ const TodoListItem: FC<TodoListItemProps> = ({
         setCompleteTask(!completeTask);
     };
     const handleOnHover = (event: any) => {
-        setExposeControls(!exposeControls);
+        //setExposeControls(!exposeControls);
     };
     const handleOnDoubleClick = (event: any) => {
         console.log("ss");
@@ -83,7 +83,7 @@ const TodoListItem: FC<TodoListItemProps> = ({
         >
             <TodoTitleStyled>
                 <CheckBox onClick={handleOnClickCheck}>
-                    {completeTask ? <CompletedIcon /> : <CircleIcon />}
+                    {completed ? <CompletedIcon /> : <CircleIcon />}
                 </CheckBox>
                 {text}
             </TodoTitleStyled>

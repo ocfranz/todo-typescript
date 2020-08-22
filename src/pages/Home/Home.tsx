@@ -8,6 +8,7 @@ import Heading from "../../components/Heading/Heading";
 import TodoListItem from "../../components/TodoListItem/TodoListItem";
 import ModalAdd from "../../modules/ModalAdd/ModalAdd";
 import { useSelector, useDispatch } from "react-redux";
+import { Task } from "../../reducers/tasksReducer";
 
 const AppWrapper = styled.div`
     padding: 0px 20px;
@@ -32,7 +33,6 @@ function App() {
     const addTask = (task: string) => {
         dispatch({ type: "ADD_TASK", payload: task });
     };
-
     return (
         <div className="App">
             <AppWrapper>
@@ -41,13 +41,11 @@ function App() {
                 {tasks.map((task, index) => {
                     return (
                         <TodoListItem
-                            key={index}
-                            text={task}
+                            key={task.id}
+                            text={task.text}
+                            completed={task.isCompleted}
+                            date={task.date}
                             estimated={30}
-                            date={`${date.getDate()}/${
-                                date.getMonth() + 1
-                            }/${date.getFullYear()}`}
-                            completed={true}
                         />
                     );
                 })}
