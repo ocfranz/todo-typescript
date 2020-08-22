@@ -1,16 +1,16 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import styled from "styled-components";
 import CircleIcon from "./CircleIcon";
 import CompletedIcon from "./CompletedIcon";
-
+import { useDispatch } from "react-redux";
 interface TodoListItemProps {
     completed?: boolean;
-    key?: any;
+    id?: number;
     text: string;
     date: string;
     estimated: number;
 }
-const TodoListItemWrapper = styled.div<{key : any}>`
+const TodoListItemWrapper = styled.div<{ key: any }>`
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -57,16 +57,22 @@ const ButtonControls = styled.div<{ visible: boolean }>`
 `;
 
 const TodoListItem: FC<TodoListItemProps> = ({
-    key,
+    id,
     text,
     completed,
     date,
     estimated,
 }) => {
+    const dispatch = useDispatch();
+
     const [exposeControls, setExposeControls] = useState(false);
     const [completeTask, setCompleteTask] = useState(completed);
     const handleOnClickCheck = () => {
-        setCompleteTask(!completeTask);
+        let isCompleted = !completed;
+        dispatch({
+            type: "UPDATE_TASK",
+            payload: {id, text, isCompleted, date },
+        });
     };
     const handleOnHover = (event: any) => {
         //setExposeControls(!exposeControls);
@@ -74,9 +80,12 @@ const TodoListItem: FC<TodoListItemProps> = ({
     const handleOnDoubleClick = (event: any) => {
         console.log("ss");
     };
+    useEffect(() => {
+        console.log("here is key ", id);
+    }, []);
     return (
         <TodoListItemWrapper
-            key={key}
+            key={id}
             onMouseEnter={(event) => handleOnHover(event)}
             onMouseLeave={(event) => handleOnHover(event)}
             onDoubleClick={(event) => handleOnDoubleClick(event)}

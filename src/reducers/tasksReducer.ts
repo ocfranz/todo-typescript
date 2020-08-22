@@ -13,7 +13,7 @@ const initialState = {
 };
 
 type Action = {
-    type: "ADD_TASK";
+    type: "ADD_TASK" | "UPDATE_TASK";
     payload: Task;
 };
 export const tasksReducer = (
@@ -23,7 +23,15 @@ export const tasksReducer = (
     switch (action.type) {
         case "ADD_TASK":
             return { ...state, tasks: [...state.tasks, action.payload] };
+        case "UPDATE_TASK":
+            const currentTask = state.tasks.map((task) => {
+                if (task.id === action.payload.id) {
+                    return task;
+                }
+            });
+            console.log(currentTask);
 
+            return { ...state, tasks: [...state.tasks, action.payload] };
         default:
             return state;
     }

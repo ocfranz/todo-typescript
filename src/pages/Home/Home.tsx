@@ -41,7 +41,7 @@ function App() {
                 {tasks.map((task, index) => {
                     return (
                         <TodoListItem
-                            key={task.id}
+                            id={task.id}
                             text={task.text}
                             completed={task.isCompleted}
                             date={task.date}
