@@ -30,7 +30,7 @@ const TaskItemButton = styled.div`
 `;
 
 const TimeInput = styled.input`
-    font-size: 17px;
+    font-size: 16px;
     border: none;
     outline: none;
     box-shadow: none;

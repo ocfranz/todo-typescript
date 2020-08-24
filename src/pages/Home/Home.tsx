@@ -7,7 +7,7 @@ import TodoListItem from "../../components/TodoListItem/TodoListItem";
 import ModalAdd from "../../modules/ModalAdd/ModalAdd";
 import { useSelector, useDispatch } from "react-redux";
 import GridSimple from "../../components/SimpleGrid/SimpleGrid";
-
+import EmptyDisplay from "../../components/EmptyDisplay/EmptyDisplay";
 const App = () => {
     const dispatch = useDispatch();
     const tasks = useSelector((state: RootState) => state.tasksReducer.tasks);
@@ -26,12 +26,12 @@ const App = () => {
                     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap"
                 />
             </Helmet>
-
             <GridSimple
                 children={
                     <>
                         <Header addTask={addTask} />
                         <Heading type="h2" children="Today"></Heading>
+                        {tasks.length === 0 && <EmptyDisplay dayName="today"/>}
                         {tasks.map((task, index) => {
                             return (
                                 <TodoListItem
@@ -44,10 +44,10 @@ const App = () => {
                             );
                         })}
                         <Heading type="h2" children="Tomorrow"></Heading>
-                        <ModalAdd visible={visibleModal} />
                     </>
                 }
-            ></GridSimple>
+            ></GridSimple>{" "}
+            <ModalAdd visible={visibleModal} />
         </div>
     );
 };
