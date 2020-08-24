@@ -6,7 +6,7 @@ import Heading from "../../components/Heading/Heading";
 import TodoListItem from "../../components/TodoListItem/TodoListItem";
 import ModalAdd from "../../modules/ModalAdd/ModalAdd";
 import { useSelector, useDispatch } from "react-redux";
-import { AppWrapper } from "./styles";
+import GridSimple from "../../components/SimpleGrid/SimpleGrid";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -26,24 +26,28 @@ const App = () => {
                     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap"
                 />
             </Helmet>
-            <AppWrapper>
-                <Header addTask={addTask} />
-                <Heading type="h2" children="Today"></Heading>
-                {tasks.map((task, index) => {
-                    return (
-                        <TodoListItem
-                            id={task.id}
-                            text={task.text}
-                            completed={task.isCompleted}
-                            date={task.date}
-                            estimated={task.estimated}
-                        />
-                    );
-                })}
 
-                <Heading type="h2" children="Tomorrow"></Heading>
-                <ModalAdd visible={visibleModal} />
-            </AppWrapper>
+            <GridSimple
+                children={
+                    <>
+                        <Header addTask={addTask} />
+                        <Heading type="h2" children="Today"></Heading>
+                        {tasks.map((task, index) => {
+                            return (
+                                <TodoListItem
+                                    id={task.id}
+                                    text={task.text}
+                                    completed={task.isCompleted}
+                                    date={task.date}
+                                    estimated={task.estimated}
+                                />
+                            );
+                        })}
+                        <Heading type="h2" children="Tomorrow"></Heading>
+                        <ModalAdd visible={visibleModal} />
+                    </>
+                }
+            ></GridSimple>
         </div>
     );
 };
