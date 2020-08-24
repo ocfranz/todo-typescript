@@ -3,6 +3,7 @@ export interface Task {
     text: string;
     isCompleted: boolean;
     date: string;
+    estimated: number;
 }
 
 export interface TasksState {

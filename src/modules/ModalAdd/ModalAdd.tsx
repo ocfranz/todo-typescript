@@ -32,6 +32,8 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     const [newTask, setNewTask] = useState("");
     const titleRef: any = useRef(null);
     const modalDialog: any = useRef(null);
+    const [ taskDate, setTaskDate ] = useState('');
+    const [ taskEstimated, setTaskEstimated ] = useState('');
 
     const dispatch = useDispatch();
     const visibleModal = useSelector(
@@ -59,7 +61,8 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
             id: tasks.length + 1,
             text: newTask,
             isCompleted: false,
-            date: new Date().toDateString().toString(),
+            date: taskDate,
+            estimated : 40
         };
         setNewTask("");
         titleRef.current.innerHTML = "";
@@ -77,7 +80,8 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     };
     const handleOnEstimatedClick = () => {};
 
-    const handleOnClickOutsideDate = () => {
+    const handleOnClickOutsideDate = (date : string) => {
+        setTaskDate(date);
         setVisibleModalDate(!visibleModalDate);
     };
     return (
@@ -123,12 +127,13 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
                             <TaskItemRow
                                 icon={<CalendarIcon size={25} />}
                                 children="Date"
+                                value={taskDate}
                                 handleOnButtonClick={handleOnDateClick}
                                 childrenModal={
                                     <ModalDate
                                         visible={visibleModalDate}
                                         onClickOutside={
-                                            handleOnClickOutsideDate
+                                            (date)=>handleOnClickOutsideDate(date)
                                         }
                                     />
                                 }
@@ -137,6 +142,7 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
                             <TaskItemRow
                                 icon={<ClockIcon size={25} />}
                                 children="Estimated"
+                                value ={ taskEstimated}
                                 handleOnButtonClick={handleOnEstimatedClick}
                             />
                             <hr></hr>

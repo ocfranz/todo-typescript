@@ -45,7 +45,7 @@ function App() {
                             text={task.text}
                             completed={task.isCompleted}
                             date={task.date}
-                            estimated={30}
+                            estimated={task.estimated}
                         />
                     );
                 })}
