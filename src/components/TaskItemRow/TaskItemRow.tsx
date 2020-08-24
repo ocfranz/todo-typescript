@@ -47,7 +47,7 @@ const TaskItemRow: FC<TaskItemRowProps> = ({
                 <TaskItemButton onClick={handleOnButtonClick}>
                     {type === "date" && (
                         <span style={{ opacity: "0.5" }}>
-                            {value === "" ? "Empty" : value}
+                            {value === "" || value=== "0" ? "Empty" : value}
                         </span>
                     )}
                     {type === "time" && (

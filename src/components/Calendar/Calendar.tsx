@@ -1,17 +1,14 @@
-import React, { useState, useEffect, FC } from "react";
-import moment from "moment";
+import React, { FC } from "react";
 import "./CustomeCalendar.css";
 import CalendarLibrary from "react-calendar";
 import { CalendarWrapper } from "./styles";
 
 interface CalendarProps {
-    handleOnChange: (date : any) => void;
+    handleOnChange: (date: any) => void;
 }
 
-const Calendar : FC<CalendarProps> = ({ handleOnChange }) => {
-    const [selectedDate, setSelectedDate] = useState();
+const Calendar: FC<CalendarProps> = ({ handleOnChange }) => {
     const handleCalendarChange = (date: any) => {
-        console.log(date);
         handleOnChange(date);
     };
 

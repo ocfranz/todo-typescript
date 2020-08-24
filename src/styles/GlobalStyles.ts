@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
     body, html{
         border : 0;
         margin :0;
@@ -17,7 +16,7 @@ const GlobalStyles = createGlobalStyle`
         transition:  background-color 0.5s linear;
     }    
     *{
-        font-family: 'Poppins', sans-serif;
+        font-family: 'DM Sans', sans-serif;
     }
     [contenteditable][placeholder]:empty:before {
         content: attr(placeholder);

@@ -1,5 +1,4 @@
 import React, { FC, useState, useEffect, useRef } from "react";
-
 import CircleIcon from "../../components/TodoListItem/CircleIcon";
 import Editable from "../../components/Editable/Editable";
 import { RootState } from "../../reducers";
@@ -32,8 +31,8 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     const [newTask, setNewTask] = useState("");
     const titleRef: any = useRef(null);
     const modalDialog: any = useRef(null);
-    const [ taskDate, setTaskDate ] = useState('');
-    const [ taskEstimated, setTaskEstimated ] = useState(0);
+    const [taskDate, setTaskDate] = useState("");
+    const [taskEstimated, setTaskEstimated] = useState(0);
 
     const dispatch = useDispatch();
     const visibleModal = useSelector(
@@ -44,7 +43,6 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     useEffect(() => {
         if (visibleModal) {
             document.addEventListener("click", handleClickOutside, true);
-            console.log("click outise");
         }
     });
     const handleClickOutside = (event: any) => {
@@ -59,15 +57,17 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     const handleOnAdd = () => {
         let payload: Task = {
             id: tasks.length + 1,
-            text: newTask.replace(/&nbsp;/g, ''),
+            text: newTask.replace(/&nbsp;/g, ""),
             isCompleted: false,
             date: taskDate,
-            estimated : taskEstimated
+            estimated: taskEstimated,
         };
         setNewTask("");
         titleRef.current.innerHTML = "";
         handleOnClose();
         setVisibleModalDate(false);
+        setTaskDate("");
+        setTaskEstimated(0);
         dispatch({ type: "ADD_TASK", payload });
     };
 
@@ -78,11 +78,11 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     const handleOnDateClick = () => {
         setVisibleModalDate(!visibleModalDate);
     };
-    const handleOnEstimatedClick = (time : number) => {
+    const handleOnEstimatedClick = (time: number) => {
         setTaskEstimated(time);
     };
 
-    const handleOnClickOutsideDate = (date : string) => {
+    const handleOnClickOutsideDate = (date: string) => {
         setTaskDate(date);
         setVisibleModalDate(!visibleModalDate);
     };
@@ -134,21 +134,23 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
                                 childrenModal={
                                     <ModalDate
                                         visible={visibleModalDate}
-                                        onClickOutside={
-                                            (date)=>handleOnClickOutsideDate(date)
+                                        onClickOutside={(date) =>
+                                            handleOnClickOutsideDate(date)
                                         }
                                     />
                                 }
-                                handleOnContentChange={()=>{}}
+                                handleOnContentChange={() => {}}
                             />
 
                             <TaskItemRow
                                 icon={<ClockIcon size={25} />}
                                 type="time"
                                 children="Estimated"
-                                value ={taskEstimated.toString()}
-                                handleOnButtonClick={()=>{}}
-                                handleOnContentChange={(time)=>handleOnEstimatedClick(time)}
+                                value={taskEstimated.toString()}
+                                handleOnButtonClick={() => {}}
+                                handleOnContentChange={(time) =>
+                                    handleOnEstimatedClick(time)
+                                }
                             />
                             <hr></hr>
                             <div
