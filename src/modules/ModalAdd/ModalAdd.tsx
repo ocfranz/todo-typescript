@@ -33,7 +33,7 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     const titleRef: any = useRef(null);
     const modalDialog: any = useRef(null);
     const [ taskDate, setTaskDate ] = useState('');
-    const [ taskEstimated, setTaskEstimated ] = useState('');
+    const [ taskEstimated, setTaskEstimated ] = useState(0);
 
     const dispatch = useDispatch();
     const visibleModal = useSelector(
@@ -59,10 +59,10 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     const handleOnAdd = () => {
         let payload: Task = {
             id: tasks.length + 1,
-            text: newTask,
+            text: newTask.replace(/&nbsp;/g, ''),
             isCompleted: false,
             date: taskDate,
-            estimated : 40
+            estimated : taskEstimated
         };
         setNewTask("");
         titleRef.current.innerHTML = "";
@@ -78,7 +78,9 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
     const handleOnDateClick = () => {
         setVisibleModalDate(!visibleModalDate);
     };
-    const handleOnEstimatedClick = () => {};
+    const handleOnEstimatedClick = (time : number) => {
+        setTaskEstimated(time);
+    };
 
     const handleOnClickOutsideDate = (date : string) => {
         setTaskDate(date);
@@ -137,13 +139,16 @@ const ModalAdd: FC<ModalAddProps> = ({ visible }) => {
                                         }
                                     />
                                 }
+                                handleOnContentChange={()=>{}}
                             />
 
                             <TaskItemRow
                                 icon={<ClockIcon size={25} />}
+                                type="time"
                                 children="Estimated"
-                                value ={ taskEstimated}
-                                handleOnButtonClick={handleOnEstimatedClick}
+                                value ={taskEstimated.toString()}
+                                handleOnButtonClick={()=>{}}
+                                handleOnContentChange={(time)=>handleOnEstimatedClick(time)}
                             />
                             <hr></hr>
                             <div

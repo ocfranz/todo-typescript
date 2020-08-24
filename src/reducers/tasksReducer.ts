@@ -25,14 +25,19 @@ export const tasksReducer = (
         case "ADD_TASK":
             return { ...state, tasks: [...state.tasks, action.payload] };
         case "UPDATE_TASK":
-            const currentTask = state.tasks.map((task) => {
+            const tasks: Array<Task> = state.tasks.map((task) => {
                 if (task.id === action.payload.id) {
-                    return task;
+                    const updatedTask: Task = Object.assign(
+                        {},
+                        task,
+                        action.payload
+                    );
+                    return updatedTask;
                 }
+                return task;
             });
-            console.log(currentTask);
 
-            return { ...state, tasks: [...state.tasks, action.payload] };
+            return { ...state, tasks: tasks };
         default:
             return state;
     }

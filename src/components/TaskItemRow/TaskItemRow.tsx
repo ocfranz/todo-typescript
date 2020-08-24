@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 import {
     TaskItem,
@@ -6,6 +6,7 @@ import {
     TaskItemButton,
     TaskItemName,
     TaskItemAction,
+    TimeInput,
 } from "./styles";
 
 interface TaskItemRowProps {
@@ -14,6 +15,8 @@ interface TaskItemRowProps {
     handleOnButtonClick: () => void;
     childrenModal?: React.Component | any;
     value?: string;
+    type?: string;
+    handleOnContentChange: (time: number) => void;
 }
 
 const TaskItemRow: FC<TaskItemRowProps> = ({
@@ -22,7 +25,18 @@ const TaskItemRow: FC<TaskItemRowProps> = ({
     handleOnButtonClick,
     childrenModal,
     value,
+    type,
+    handleOnContentChange,
 }) => {
+    const [taskEstimated, setTaskEstimated] = useState(0);
+    const handleOnChange = (event: any) => {
+        setTaskEstimated(event.target.value)
+        const estimatedTime = parseInt(event.target.value);
+        if (!isNaN(estimatedTime)) {
+            handleOnContentChange(estimatedTime);
+        }
+      
+    };
     return (
         <TaskItem>
             <TaskItemTag>
@@ -31,9 +45,18 @@ const TaskItemRow: FC<TaskItemRowProps> = ({
             </TaskItemTag>
             <TaskItemAction>
                 <TaskItemButton onClick={handleOnButtonClick}>
-                    <span style={{ opacity: "0.5" }}>
-                        {value === "" ? "Empty" : value}
-                    </span>
+                    {type === "date" && (
+                        <span style={{ opacity: "0.5" }}>
+                            {value === "" ? "Empty" : value}
+                        </span>
+                    )}
+                    {type === "time" && (
+                        <TimeInput
+                            placeholder="Empty"
+                            onChange={handleOnChange}
+                            value={taskEstimated === 0 ? "" : taskEstimated}
+                        />
+                    )}
                 </TaskItemButton>
                 {childrenModal}
             </TaskItemAction>
@@ -43,6 +66,7 @@ const TaskItemRow: FC<TaskItemRowProps> = ({
 
 TaskItemRow.defaultProps = {
     value: "Empty",
+    type: "date",
 };
 
 export default TaskItemRow;

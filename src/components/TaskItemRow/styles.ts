@@ -18,16 +18,36 @@ const TaskItemName = styled.span`
 `;
 const TaskItemAction = styled.div`
     width: 80%;
-    
 `;
 
 const TaskItemButton = styled.div`
-text-align: left;
-    padding : 10px 0px;
-    cursor : pointer;
+    text-align: left;
+    padding: 10px 0px 10px 10px;
+    cursor: pointer;
     &:hover {
         background-color: rgba(0, 0, 0, 0.3);
-        
-    }`
+    }
+`;
 
-export { TaskItem, TaskItemTag,TaskItemAction,  TaskItemButton, TaskItemName };
+const TimeInput = styled.input`
+    font-size: 17px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background-color: transparent;
+    opacity: 0.8;
+    padding: 0;
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+`;
+
+export {
+    TaskItem,
+    TaskItemTag,
+    TaskItemAction,
+    TaskItemButton,
+    TaskItemName,
+    TimeInput,
+};

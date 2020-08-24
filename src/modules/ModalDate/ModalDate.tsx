@@ -10,12 +10,12 @@ import {
 
 interface ModalDate {
     visible: boolean;
-    onClickOutside: (date : string) => void;
+    onClickOutside: (date: string) => void;
 }
 
 const ModalDate: FC<ModalDate> = ({ visible, onClickOutside }) => {
     const modalDate = useRef(null);
-    const [ date, setDate] = useState('');
+    const [date, setDate] = useState("");
     useEffect(() => {
         if (visible) {
             document.addEventListener("click", handleClickOutside, true);
@@ -29,19 +29,20 @@ const ModalDate: FC<ModalDate> = ({ visible, onClickOutside }) => {
         }
     };
 
-    const handleOnCalendarChange= (date : any) =>{
-        console.log(date)
-        setDate(`${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`)
-    }
- 
+    const handleOnCalendarChange = (date: any) => {
+        setDate(
+            `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+        );
+    };
+
     return (
         <ModalDateStyled visible={visible} ref={modalDate}>
             <ModalDateWrapper>
                 <DateInputWrapper>
-                    <DateInput readOnly={true} value={date}/>
+                    <DateInput readOnly={true} value={date} />
                 </DateInputWrapper>
                 <div>
-                    <Calendar handleOnChange={handleOnCalendarChange}/>
+                    <Calendar handleOnChange={handleOnCalendarChange} />
                 </div>
             </ModalDateWrapper>
         </ModalDateStyled>
