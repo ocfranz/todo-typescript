@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import "./CustomeCalendar.css";
+import "./CustomCalendar.css";
 import CalendarLibrary from "react-calendar";
 import { CalendarWrapper } from "./styles";
 

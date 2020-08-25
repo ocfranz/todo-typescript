@@ -54,3 +54,6 @@
     opacity: 0.5;
     pointer-events: none;
 }
+.react-calendar__tile--now{
+    border: 1px solid red;
+}
