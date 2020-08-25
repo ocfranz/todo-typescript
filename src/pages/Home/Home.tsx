@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { RootState } from "../../reducers";
 import Header from "../../modules/Header/Header";
@@ -8,6 +8,8 @@ import ModalAdd from "../../modules/ModalAdd/ModalAdd";
 import { useSelector, useDispatch } from "react-redux";
 import GridSimple from "../../components/SimpleGrid/SimpleGrid";
 import EmptyDisplay from "../../components/EmptyDisplay/EmptyDisplay";
+import { Task } from "../../reducers/tasksReducer";
+import { filterTasks } from "../../helpers/filterTasks";
 const App = () => {
     const dispatch = useDispatch();
     const tasks = useSelector((state: RootState) => state.tasksReducer.tasks);
@@ -16,6 +18,41 @@ const App = () => {
     );
     const addTask = (task: string) => {
         dispatch({ type: "ADD_TASK", payload: task });
+    };
+
+    const drawTodayTasks = () => {
+        let temp: any[] = [];
+        const todayTasks: any[] = filterTasks(tasks, "today");
+        todayTasks.map((task) => {
+            temp.push(
+                <TodoListItem
+                    id={task.id}
+                    text={task.text}
+                    completed={task.isCompleted}
+                    date={task.date}
+                    estimated={task.estimated}
+                />
+            );
+        });
+        if (temp.length === 0) return <EmptyDisplay dayName="today" />;
+        return temp;
+    };
+    const drawTomorrowTasks = () => {
+        let temp: any[] = [];
+        const todayTasks: any[] = filterTasks(tasks, "tomorrow");
+        todayTasks.map((task) => {
+            temp.push(
+                <TodoListItem
+                    id={task.id}
+                    text={task.text}
+                    completed={task.isCompleted}
+                    date={task.date}
+                    estimated={task.estimated}
+                />
+            );
+        });
+        if (temp.length === 0) return <EmptyDisplay dayName="tomorrow" />;
+        return temp;
     };
     return (
         <div className="App">
@@ -31,19 +68,9 @@ const App = () => {
                     <>
                         <Header addTask={addTask} />
                         <Heading type="h2" children="Today"></Heading>
-                        {tasks.length === 0 && <EmptyDisplay dayName="today"/>}
-                        {tasks.map((task, index) => {
-                            return (
-                                <TodoListItem
-                                    id={task.id}
-                                    text={task.text}
-                                    completed={task.isCompleted}
-                                    date={task.date}
-                                    estimated={task.estimated}
-                                />
-                            );
-                        })}
+                        {drawTodayTasks()}
                         <Heading type="h2" children="Tomorrow"></Heading>
+                        {drawTomorrowTasks()}
                     </>
                 }
             ></GridSimple>{" "}
