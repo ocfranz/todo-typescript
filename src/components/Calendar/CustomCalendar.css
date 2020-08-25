@@ -57,3 +57,7 @@
 .react-calendar__tile--now{
     border: 1px solid red;
 }
+.react-calendar__tile--now:active{
+    border: 1px solid red;
+}
+
